@@ -30,17 +30,17 @@ class BaseModel:
                     models.storage.new(self)
 
                 def __str__(self):
-                    """ should print instance"""
+                    """should print instance"""
                     return "[{}] ({}) {}".\
                             format(type(self).__name__, self.id, self.__dict__)
 
                 def save(self):
-                    """ updates the public instance attribute updated_at"""
+                    """updates the public instance attribute updated_at"""
                     self.updated_at = datetime.today()
                     models.storage.save()
 
                 def to_dict(self):
-                    """  returns a dictionary containing all keys/values"""
+                    """returns a dictionary containing all keys/values"""
                     my_dict = self.__dict__.copy()
                     my_dict['created_at'] = self.created_at.isoformat()
                     my_dict['updated_at'] = self.updated_at.isoformat()
