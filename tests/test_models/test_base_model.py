@@ -1,10 +1,20 @@
 #!/usr/bin/python3
 """ """
 import unittest
-from models.base_model import BaseModel
+import uuid
 from datetime import datetime
+from models import base_model
+BaseModel = base_model.BaseModel
 
 class TestBase(unittest.TestCase):
+
+    def test_save(self):
+        t_base1 = BaseModel()
+        created_at = t_base1.created_at
+        update_at = t_base1.updated_at
+        t_base1.save()
+        self.assertNotEqual(update_at, t_base1.updated_at)
+        self.assertEqual(created_at, t_base1.created_at)
 
     def test_id(self):
         """ """
@@ -37,10 +47,12 @@ class TestBase(unittest.TestCase):
     def test_save(self):
         """ """
         t_base1 = BaseModel()
-        sleep(2)
-        update = t_base1.updated_at
+        try:
+            os.remove('file.json')
+        except Exception:
+            pass
         t_base1.save()
-        self.assertNotEqual(update, t_base1.updated_at)
+        self.assertTrue(os.path.exists('file.json'))
 
     def test_to_dict(self):
         """ """
