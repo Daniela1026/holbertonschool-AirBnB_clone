@@ -28,33 +28,30 @@ classes = {"BaseModel": BaseModel, "User": User, "State": State,
 class Test_Base(unittest.TestCase):
     """Base class tests"""
 
-    def test_1(self):
-        """  Test Dictionary """
+    def test_dic(self):
+        """Test Dictionary """
         model = BaseModel()
         model.save()
         new_object = storage.all()
         self.assertEqual(dict, type(new_object))
 
     def test_pep8(self):
-        """Test PEP8."""
-        pep8style = pycodestyle.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/engine/file_storage.py'])
+        """Test PEP8"""
+        pestyle = pycodestyle.StyleGuide(quiet=True)
+        result = pestyle.check_files(['models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
-
 class Test_docstrings_filestorage(unittest.TestCase):
 
-    def test_Documentation(self):
-        """Test if module file_storage has documentation
-        """
+    def test_Doc(self):
+        """Test if module file_storage has documentation"""
         self.assertTrue(len(models.engine.file_storage.__doc__) > 0)
         self.assertIsNotNone(file_storage.__doc__,
                              "file_storage.py need docstrings")
 
     def test_type_field(self):
-        """Test type of field
-        """
+        """Test type of field"""
         object = FileStorage()
         self.assertIsInstance(object, FileStorage)
         self.assertIsInstance(object.all(), dict)
@@ -62,29 +59,27 @@ class Test_docstrings_filestorage(unittest.TestCase):
         self.assertIsInstance(object._FileStorage__objects, dict)
 
     def test_all(self):
-        """Test all method
-        """
+        """Test all method"""
         object = BaseModel()
-        all_objs = storage.all()
-        self.assertIsInstance(all_objs, dict)
+        all_obj = storage.all()
+        self.assertIsInstance(all_obj, dict)
         self.assertIsInstance(storage.all(), dict)
         key_object = f"{object.__class__.__name__}.{object.id}"
-        self.assertEqual(all_objs[key_object], object)
+        self.assertEqual(all_obj[key_object], object)
 
     def test_new(self):
-        """Test new method
-        """
+        """Test new method"""
         object = BaseModel()
         models.storage.new(object)
-        dict_objects = models.storage.all()
+        dict_obj = models.storage.all()
 
         # Testing if key was set correctly and in __objects
         key = f"{object.__class__.__name__}.{object.id}"
-        keys_dict = dict_objects.keys()
+        keys_dict = dict_obj.keys()
         self.assertIn(key, keys_dict)
 
         # Testing if value was correctly added to __objects
-        self.assertEqual(dict_objects[key], object)
+        self.assertEqual(dict_obj[key], object)
 
         storage = FileStorage()
         save = FileStorage._FileStorage__objects
@@ -100,8 +95,7 @@ class Test_docstrings_filestorage(unittest.TestCase):
         FileStorage._FileStorage__objects = save
 
     def test_save(self):
-        """Test for save method
-        """
+        """Test for save method"""
         path = os.getcwd()
         file_name_expected = 'file.json'
         try:
