@@ -26,7 +26,7 @@ class BaseModel:
 
                     def __str__(self):
                         """should print instance"""
-                        return "[{0}] ({1}) {2}".format(BaseModel.__name__,
+                        return ("[{0}] ({1}) {2}".format(BaseModel.__name__,
                                          self.id, self.__dict__))
 
                         def save(self):
