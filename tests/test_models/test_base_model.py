@@ -3,20 +3,27 @@
 Unitest Class BaseModel
 """
 import unittest
-<<<<<<< HEAD:tests/test_models/test_base_model.py
 import uuid
-=======
-from models.base_model import BaseModel, __doc__ as mrdoc
+import json
+import pycodestyle as pep8
 import inspect
-# importpep8
-import models
->>>>>>> 649ceaee17549d54669f994c66cc90287ea25ff2:tests/test_base_model.py
 from datetime import datetime
-from models import base_model
-BaseModel = base_model.BaseModel
+
+base_instance = BaseModel()
 
 class TestBase(unittest.TestCase):
-<<<<<<< HEAD:tests/test_models/test_base_model.py
+
+    def test_pep8_base(self):
+        """Test that checks for PEP8"""
+        syntax = pep8.StyleGuide(quit=True)
+        result = syntax.check_files(["models/base_model.py"])
+        self.assertEqual(
+            result.total_errors, 0, "Found code style errors (and warnings)."
+        )
+
+    def test_base_instance(self):
+        """Checks if base_instance is a BaseModel instance"""
+        self.assertIsInstance(base_instance, BaseModel)
 
     def test_save(self):
         t_base1 = BaseModel()
@@ -26,11 +33,10 @@ class TestBase(unittest.TestCase):
         self.assertNotEqual(update_at, t_base1.updated_at)
         self.assertEqual(created_at, t_base1.created_at)
 
-=======
     """
     Unitest at testing
     """
->>>>>>> 649ceaee17549d54669f994c66cc90287ea25ff2:tests/test_base_model.py
+
     def test_id(self):
         """
         Check id's in the created instances
@@ -67,7 +73,7 @@ class TestBase(unittest.TestCase):
         self.assertIn('created_at', t_dict)
         self.assertIn('updated_at', t_dict)
 
-    def test_save(self):
+    def test_save2(self):
         """
         Test to check each update in the storage
         """
