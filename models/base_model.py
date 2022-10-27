@@ -10,15 +10,14 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """arguments for the constructor of a BaseModel"""
-                format = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for key in kwargs:
                 if key == "id":
                     self.id = kwargs[key]
                 if key == "created_at":
-                    self.created_at = datetime.strptime(kwargs[key], format)
+                    self.created_at = datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f")
                 if key == "updated_at":
-                    self.updated_at = datetime.strptime(kwargs[key], format)
+                    self.updated_at = datetime.strptime(kwargs[key], "%Y-%m-%dT%H:%M:%S.%f")
 
                 else:
                     self.id = str(uuid4())
