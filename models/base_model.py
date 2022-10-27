@@ -29,7 +29,8 @@ class BaseModel:
 
                     def __str__(self):
                         """should print instance"""
-                        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+                        bm = self.__class__.__name__
+                        return "[{}] ({}) {}".format(bm, self.id, self.__dict__)
 
                         def save(self):
                             """updates the public instance attribute updated_at"""
@@ -42,4 +43,4 @@ class BaseModel:
                                 my_dict['created_at'] = self.created_at.isoformat()
                                 my_dict['updated_at'] = self.updated_at.isoformat()
                                 my_dict['__class__'] = self.__class__.__name__
-                                return(my_dict)
+                                return my_dict
