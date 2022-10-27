@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Function speccify a Console the entry point of the command interpreter
+This the console with function speccify at entry point of the command interpreter
 """
 import cmd
 import json
@@ -17,27 +17,32 @@ from models.engine.file_storage import FileStorage
 
 
 class HBNBCommand(cmd.Cmd):
-    """Define the class HBNB as interpreter
+    """
+    Define the class HBNB as interpreter.
     """
     prompt = "(hbnb) "
 
     def do_quit(self, line):
-        """Quit command to exit the program
+        """
+        Command to exit the program.
         """
         return True
 
     def do_EOF(self, line):
-        """Exit Success
+        """
+        Exit Success.
         """
         return True
 
     def emptyline(self):
-        """When recive an empty line do nothing.
+        """
+        Empty line.
         """
         pass
 
     def do_create(self, line):
-        """Create a new instance from base model
+        """
+        Create a new instance from base model
         """
         if len(line) == 0:
             print("** class name missing **")
@@ -53,7 +58,8 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def do_show(self, line):
-        """Representation of an instance based on the class name and id
+        """
+        Representation of an instance based on the class name/id
         """
         split_line = shlex.split(line)
         if len(split_line) == 0:
@@ -80,7 +86,8 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, line):
-        """Method to Deletes an instance based on the class name and id.
+        """
+        Method to Deletes an instance based on the class nam/id.
         """
         split_line = shlex.split(line)
         if len(split_line) == 0:
@@ -103,7 +110,8 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, line):
-        """Method to print all elements of storage as a list of string
+        """
+        Method to print all elements of storage as a list of string
         """
         split_line = shlex.split(line)
         if len(split_line) == 0:
@@ -118,7 +126,8 @@ class HBNBCommand(cmd.Cmd):
               if split_line[0] in k])
 
     def do_update(self, line):
-        """Method to Updates an instance based on the class name
+        """
+        Method to Updates an instance based on the class name
         and id by adding or updating attribute
         """
         split_line = shlex.split(line)
@@ -150,7 +159,8 @@ class HBNBCommand(cmd.Cmd):
             storage.all()[tmp_key].save()
 
     def default(self, line):
-        """Method to  to retrieve all instances of a class by using
+        """
+        Method to  to retrieve all instances of a class by using
         """
         line_tmp = line.replace("(", ".").replace(")", ".").replace('"', "")\
             .replace(",", "").split(".")
@@ -170,39 +180,13 @@ class HBNBCommand(cmd.Cmd):
                     print("Holi")
                 else:
                     self.do_update(arguments)
-                
-                """
-                arguments = command[1].split()
-                id_ = arguments[0].replace(",", "").replace("\"", "")
-                if "{" in arguments[2]:  # Work with dictionary
-                    for i in arguments:
-                        if id_ in i:
-                            continue
-                        if ":" in i:
-                            key_ = i.replace("{", "").replace("'", "").replace(
-                                ":", "").replace("\"", "")
-                            print("Key:", key_)
-                        else:
-                            i = i.replace("\"", "").replace(",", "").replace(
-                                "}", "")
-                            value_ = i.replace("\"", "").replace(",", "")\
-                                .replace("'", "")
-                            print("Value:", value_)
-                            # Update object with key and value
-                            if self.do_update(
-                                args[0] + " " + id_ + " " + key_ + " " + value_
-                            ) is False:
-                                return
-                else:  # Work without dictionary
-                    args_to_update = str(arguments).replace("\"", "").replace(
-                        ",", "").replace("[", "").replace("]", "").replace(
-                            "\'", "")
-                    self.do_update(args[0] + " " + args_to_update)"""
+
         else:
             print("*** Unknown syntax: {}".format(line))
 
     def do_count(self, line):
-        """Method to print the number of instance inside the storage file json
+        """
+        Method to print the number of instance inside the storage file json
         """
         split_line = shlex.split(line)
         if len(split_line) == 0:
