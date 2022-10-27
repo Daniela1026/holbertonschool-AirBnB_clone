@@ -1,47 +1,51 @@
 #!/usr/bin/python3
 """ recreate a BaseModel store first object"""
 
-import json
-import os
 from models.base_model import BaseModel
+from models.user import User
+import json
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
-class FileStorage():
+cla_i = {"BaseModel": BaseModel, "User": User, "Review": Review,
+         "Amenity": Amenity, "City": City, "State": State, "Place": Place}
+
+
+class FileStorage:
+    """serializes instances to a JSON file and
+    deserializes JSON file to instances"""
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        return FileStorage.__objects
+        """returns the dictionary"""
+        return self.__objects
 
     def new(self, obj):
-        FileStorage.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
-
-    def destroy(self, id):
-        del FileStorage.__objects[id]
-        self.save()
+        """sets in __objects the obj with key <obj class name>.id"""
+        if obj is not None:
+            key = obj.__class__.__name__ + "." + obj.id
+            self.__objects[key] = obj
 
     def save(self):
-        """
-        The above function saves the objects in the FileStorage class \
-            to a JSON file.
-        """
-        objs = {}
-        for id in FileStorage.__objects:
-            objs[id] = FileStorage.__objects[id].to_dict()
-        with open(FileStorage.__file_path, 'w') as f:
-            f.seek(0)
-            f.write(json.dumps(objs))
-            f.truncate()
+        """serializes __objects to the JSON file (path: __file_path)"""
+        dic = {}
+        for key in self.__objects.keys():
+            dic[key] = self.__objects[key].to_dict()
+        with open(self.__file_path, "w") as f:
+            json.dump(dic, f)
 
     def reload(self):
-        """
-        This function reloads the data from the json file
-        """
-        FileStorage.__objects.clear()
-        if os.path.exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, 'r') as f:
-                file_content = f.read()
-                data = json.loads(file_content) \
-                    if file_content is not None else []
-                for key, value in data.items():
-                    FileStorage.__objects[key] = \
-                        globals()[value['__class__']](**valu)
+        """deserializes the JSON file to __objects
+        (only if the JSON file (__file_path)"""
+        try:
+            with open(self.__file_path, "r") as f:
+                jr = json.load(f)
+            for key in jr:
+                self.__objects[key] = cla_i[jr[key]["__class__"]](**jr[key])
+        except Exception:
+            pass
