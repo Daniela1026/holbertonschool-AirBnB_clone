@@ -4,6 +4,7 @@
 import uuid
 from datetime import datetime
 import models
+time = "%Y-%m-%dT%H:%M:%S.%f"
 
 class BaseModel:
     """Class Basemodel"""
@@ -13,7 +14,7 @@ class BaseModel:
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                date_time = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                date_time = datetime.strptime(value, time)
                 setattr(self, key, date_time)
             elif key != "__class__":
                 setattr(self, key, value)
