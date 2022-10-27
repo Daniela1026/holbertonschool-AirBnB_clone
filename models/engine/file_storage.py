@@ -4,13 +4,6 @@
 import json
 import os
 from models.base_model import BaseModel
-from models.user import User
-from models.amenity import Amenity
-from models.state import State
-from models.city import City
-from models.review import Review
-from models.place import Place
-
 
 class FileStorage():
     __file_path = "file.json"
@@ -51,4 +44,4 @@ class FileStorage():
                     if file_content is not None else []
                 for key, value in data.items():
                     FileStorage.__objects[key] = \
-                        globals()[value['__class__']](**value)
+                        globals()[value['__class__']](**valu)
