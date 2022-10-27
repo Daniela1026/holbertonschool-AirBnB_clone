@@ -9,7 +9,6 @@ import pycodestyle as pep8
 import inspect
 from datetime import datetime
 
-base_instance = BaseModel()
 
 class TestBase(unittest.TestCase):
 
@@ -91,3 +90,6 @@ class TestBase(unittest.TestCase):
         """
         t_base1 = BaseModel()
         self.assertTrue(dict, type(t_base1.to_dict))
+
+        if __name__ == '__main__':
+            unittest.main()
