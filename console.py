@@ -102,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
         """
          line_arg = args.split()
         nam_name, nam_id = line_arg
-        
+
         if not args:
             print("** class name missing **")
             return
