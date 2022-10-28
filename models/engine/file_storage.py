@@ -48,7 +48,6 @@ class FileStorage:
         (__file_path) exists ; otherwise, do nothing. If the file doesn’t
         exist, no exception should be raised)
         """
-<<<<<<< HEAD
         try:
             with open(self.__file_path, "r", encoding="utf-8") as file:
                 file_dict = json.load(file)
@@ -57,11 +56,9 @@ class FileStorage:
                     self.__objects[key] = value
         except:
             pass
-=======
         if path.exist(self.__file__path):
             with open(self.__file__path, "r", encoding="utf-8") as file:
                 json_object = json.loads(file.read())
 
             for key, value in json_object.items():
                 self.__onjects[key] = eval (value['__class__'])(**value)
->>>>>>> 87c4ef901f68b8f63b10d2f7a9e51e81fb653f17
