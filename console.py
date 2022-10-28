@@ -18,7 +18,8 @@ class HBNBCommand(cmd.Cmd):
     """
     Defines the HBnB command interpreter
     """
-
+    model_tags = ["BaseModel", "User", "State",
+                  "City", "Amenity", "Place", "Review"]
     prompt = "(hbnb) "
 
     def do_quit(self, args):
