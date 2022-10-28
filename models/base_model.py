@@ -9,7 +9,6 @@ import models
 
 class BaseModel:
     """ Base class for all common attributes/methods for other classes"""
-
     def __init__(self, *args, **kwargs):
         """ Method __init__ initialize the all attibutes """
       if len(kwargs) > 0:
