@@ -7,7 +7,6 @@ from os import path
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
-@@ -14,41 +15,42 @@
 
 class FileStorage:
     """
