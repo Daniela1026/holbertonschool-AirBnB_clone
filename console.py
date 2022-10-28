@@ -80,17 +80,17 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-
-        if len(line_arg) == 1:
-            print("** class doesn't exist **")
-            return
         
         if nam_name not in self.model_tags:
             print("** instance id missing **")
             return
+            
+        if len(line_arg) == 1:
+            print("** class doesn't exist **")
+            return
 
         base_id = storage.all().get(f"{nam_name}.{nam_id}")
-        if nor base_id:
+        if not base_id:
             print("** no instance found **")
             return
 
@@ -100,6 +100,9 @@ class HBNBCommand(cmd.Cmd):
         """
         Deletes an instance based on the class name and id
         """
+         line_arg = args.split()
+        nam_name, nam_id = line_arg
+        
         if not args:
             print("** class name missing **")
             return
@@ -132,22 +135,27 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class name
         and id by adding or updating attribute
         """
-        if len(line) == 0:
-            print("** class name missing **")
+        line_arg = args.split()
+        m_name, m_id, name_attr, value_attr = line_arg
+        
+        if not arg:
+            print("*** class name missing *")
             return
-
-        my_args = line.split()
-        nam_name, nam_id, name_attr, value_attr = line_arg
-        if not args:
-            print("** class name missing **")
-            return
-
+            
         if len(line_arg) == 1:
-            print("** instance id missing **")
+            print("** class name missing **")
             return
 
         if len(line_arg) == 2:
             print("** attribute name missing **")
+            return
+
+        if len(line_arg) == 3:
+            print("** value missing **")
+            return
+        
+        if nam_name not in self.model_tags:
+            print("** class doesn't exist **")
             return
 
         base = storage.all().get(f"{nam_name}.{nam_id}")
