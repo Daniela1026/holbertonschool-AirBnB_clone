@@ -50,12 +50,12 @@ class FileStorage:
         from models.state import State
         from models.review import Review
 
+        json_file = ""
         try:
-            with open(FileStorage.__file_path, encoding="UTF8") as fd:
-                FileStorage.__objects = json.load(fd)
-            for key, val in FileStorage.__objects.items():
-                class_name = val["__class__"]
-                class_name = models.classes[class_name]
-                FileStorage.__objects[key] = class_name(**val)
-        except FileNotFoundError:
+            with open(FileStorage.__file_path, "r") as my_file:
+                json_file = json.loads(my_file.read())
+                for key in json_file:
+                FileStorage.__objects[key] = dict[json_file[key]['__clas
+                    s__']](**json_file[key])
+        except Exception:
             pass
