@@ -2,7 +2,6 @@
 """
 This module is meant to define the storage class
 """
-from models import storage
 import json
 import os.path
 
