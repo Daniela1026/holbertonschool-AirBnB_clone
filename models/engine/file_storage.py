@@ -3,7 +3,7 @@
 This module is meant to define the storage class
 """
 import json
-from os import path
+import os.path
 
 class FileStorage:
     """
@@ -28,11 +28,10 @@ class FileStorage:
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)
         """
-        dict_to_json = {}
-        for key, value in self.__objects.items():
-            dict_json[key] = value.to_dict()
-        with open(self.__file_path, "w", encoding="utf-8") as file:
-            json.write(json.dumps(dict_json))
+        aux_dict = {key: value.to_dict() for key, value in self.all().items()}
+
+        with open(FileStorage.__file_path, mode="w+", encoding="utf-8") as f:
+            f.write(json.dumps(aux_dict))
 
     def reload(self):
         """Deserializes the JSON file to __objects (only if the JSON file
