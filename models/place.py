@@ -7,7 +7,9 @@ from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Setting new attributes"""
+    """
+    Place class
+    """
     city_id = ""
     user_id = ""
     name = ""
