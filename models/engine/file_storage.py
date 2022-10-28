@@ -46,10 +46,10 @@ class FileStorage:
         from models.state import State
         from models.review import Review
 
-         try:
-            with open(self.__file_path, 'r') as f:
-                data_dict = json.load(f)
-                for k, v in data_dict.items():
-                    self.__objects[k] = classes[v["__class__"]](**v)
-        except FileNotFoundError:
-            pass
+        if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
+                str_read = f.read()
+
+            python_obj = json.loads(str_read)
+            FileStorage.__objects = {k: eval(f"{v['__class__']}(**{v})")
+                                     for k, v in python_obj.items()}
