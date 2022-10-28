@@ -6,6 +6,7 @@ import json
 from os import path
 from models.user import User
 from models.state import State
+from models.base_model import BaseModel
 
 class FileStorage:
     """
@@ -31,10 +32,6 @@ class FileStorage:
         """Serializes __objects to the JSON file (path: __file_path)
         """
         dict_to_json = {}
-        for k, v in FileStorage.__objects.items():
-            dict_to_json[k] = v.to_dict()
-        with open(FileStorage.__file_path, "w") as f:
-            json.dump(dict_to_json, f)
         for key, value in self.__objects.items():
             dict_json[key] = value.to_dict()
         with open(self.__file_path, "w", encoding="utf-8") as file:
@@ -45,13 +42,6 @@ class FileStorage:
         (__file_path) exists ; otherwise, do nothing. If the file doesn’t
         exist, no exception should be raised)
         """
-        try:
-            with open(FileStorage.__file_path, "r") as f:
-                reader = json.load(f)
-                for k, v in reader.items():
-                    FileStorage.__objects[k] = eval(v['__class__'] + '(**v)')
-        except Exception:
-            pass
         if path.exist(self.__file__path):
             with open(self.__file__path, "r", encoding="utf-8") as file:
                 json_object = json.loads(file.read())
