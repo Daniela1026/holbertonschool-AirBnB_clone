@@ -3,7 +3,6 @@
 This module is meant to define the storage class
 """
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 import json
 import os.path
 
