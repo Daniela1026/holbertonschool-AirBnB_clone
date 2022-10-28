@@ -42,7 +42,7 @@ class FileStorage:
         exist, no exception should be raised)
         """
         from models.base_model import BaseModel
-        from models.storage import storage
+        from models.engine.file_storage import FileStorage
         from models.user import User
         from models.amenity import Amenity
         from models.city import City
