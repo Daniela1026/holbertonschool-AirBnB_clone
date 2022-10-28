@@ -22,7 +22,7 @@ class FileStorage:
     def new(self, obj):
         """Sets in __objects the obj with key <obj class name>.id
         """
-         key = str(obj.__class__.__name__) + "." + str(obj.id)
+        key = str(obj.__class__.__name__) + "." + str(obj.id)
         value_dict = obj
         FileStorage.__objects[key] = value_dict
 
