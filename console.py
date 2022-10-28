@@ -1,160 +1,144 @@
 #!/usr/bin/python3
-"""
-Defines the HBnB console.
-"""
+
 import cmd
-import json
-from models.base_model import BaseModel
 from models import storage
 from models.user import User
+from models.state import State
 from models.city import City
 from models.amenity import Amenity
-from models.review import Review
 from models.place import Place
-from models.state import State
+from models.review import Review
+from models.base_model import BaseModel
+
+dictionary = {"Amenity": Amenity,
+              "BaseModel": BaseModel,
+              "City": City,
+              "Place": Place,
+              "Review": Review,
+              "State": State,
+              "User": User}
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    Defines the HBnB command interpreter
-    """
-
-    prompt = "(hbnb) "
-
-    def do_quit(self, args):
-        """
-        Quit command to exit the program.
-        """
-        return True
-
-    def do_EOF(self, args):
-        """
-        EOF signal to exit the program.
-        """
-        return True
+    """HBNB"""
+    prompt = "(hbnb)"
 
     def emptyline(self):
-        """
-        Do nothing when receiving an empty line.
-        """
+        """Print Anything"""
         pass
 
+    def do_EOF(self, args):
+        """End of File"""
+        return True
+
+    def do_quit(self, args):
+        """Quit"""
+        return True
+
     def do_create(self, arg):
-        """
-        Creates an instance
-        """
-        if not args:
-          print("** class name missing **")
-        return
-        if args not in self.model_tags:
-            print("** class doesn't exist **")
+        """Create a new instance"""
+        my_args = arg.split()
+        if len(my_args) == 0:
+            print("** class name missing **")
             return
-
-        if args == "BaseModel":
-            base = BaseModel()
-        if args == "User":
-            base = User()
-        if args == "State":
-            base = State()
-        if args == "City":
-            base = City()
-        if args == "Place":
-            base = Place()
-        if args == "Amenity":
-            base = Amenity()
-        if args == "Review":
-            base = Review()
-
-        base.save()
-        print(base.id)
+        try:
+            new_ins = eval(my_args[0])()
+            new_ins.save()
+            print(new_ins.id)
+        except Exception:
+            print("** class doesn't exist **")
 
     def do_show(self, args):
-        """
-        Prints the string representation of an instance
-        based on the class name and id
-        """
-        line_arg = args.split()
-        nam_name, nam_id = line_arg
-
-        if not args:
+        """Prints the string representation of
+        an instance based on the class name and id"""
+        my_args = args.split()
+        if len(my_args) == 0:
             print("** class name missing **")
             return
-
-        if len(line_arg) == 1:
-            print("** class doesn't exist **")
-            return
-        
-        if nam_name not in self.model_tags:
-            print("** instance id missing **")
-            return
-
-        base_id = storage.all().get(f"{nam_name}.{nam_id}")
-        if nor base_id:
-            print("** no instance found **")
-            return
-
-        print(base_id)
+        my_dict = storage.all()
+        for key, value in my_dict.items():
+            if my_args[0] == value.__class__.__name__:
+                if len(my_args) == 1:
+                    print("** instance id missing **")
+                    return
+                if my_args[1] == value.id:
+                    print(value)
+                    return
+        for k in dictionary.keys():
+            if my_args[0] == k:
+                print("** no instance found **")
+                return
+        print("** class doesn't exist **")
 
     def do_destroy(self, args):
-        """
-        Deletes an instance based on the class name and id
-        """
-        if not args:
+        """Deletes an instance based on the class name and id"""
+        my_args = args.split()
+        if len(my_args) == 0:
             print("** class name missing **")
             return
-
-        if len(line_arg) ==1:
-            print("** class doesnt exist **")
-            return
-
-        base_id = storage.all().get(f"{nam_name}.{nam.id}")
-        if not base_id:
-            print("** no instance found **")
-            return
-
-    del storage.all()[f"{line_arg[0]}.{nam_id}"]
-    storage.save()
-
-    def do_all(self, my_args):
-        """
-        Prints all string representation of all instances
-        based or not on the class name
-        """
-        if name:
-            if name not in self.model_tags:
-                print("** class doesn't exist **")
+        my_dict = storage.all()
+        for key, value in my_dict.items():
+            if my_args[0] == value.__class__.__name__:
+                if len(my_args) == 1:
+                    print("** instance id missing **")
+                    return
+                if my_args[1] == value.id:
+                    all_objects = storage.all()
+                    all_objects.pop(key)
+                    storage.save()
+                    return
+        for k in dictionary.keys():
+            if my_args[0] == k:
+                print("** no instance found **")
                 return
-        print([str(value) for key, value in storage_.items()])
+        print("** class doesn't exist **")
 
+    def do_all(self, arg):
+        """Prints all string representation of
+        all instances based or not on the class name"""
+        my_arg = arg.split()
+        my_list = []
+        my_dict = storage.all()
+        if len(arg) == 0:
+            for key, value in my_dict.items():
+                my_list.append(str(value))
+            print(my_list)
+        else:
+            for key, value in my_dict.items():
+                if my_arg[0] == value.__class__.__name__:
+                    my_list.append(str(value))
+            if len(my_list) == 0:
+                print("** class doesn't exist **")
+            else:
+                print(my_list)
     def do_update(self, args):
-        """
-        Updates an instance based on the class name
-        and id by adding or updating attribute
-        """
-        if len(line) == 0:
+
+        my_args = args.split()
+        if len(my_args) == 0:
             print("** class name missing **")
             return
-
-        my_args = line.split()
-        nam_name, nam_id, name_attr, value_attr = line_arg
-        if not args:
-            print("** class name missing **")
-            return
-
-        if len(line_arg) == 1:
-            print("** instance id missing **")
-            return
-
-        if len(line_arg) == 2:
-            print("** attribute name missing **")
-            return
-
-        base = storage.all().get(f"{nam_name}.{nam_id}")
-        if not base:
-            print("** no instance found **")
-            return
-        setattr(storage.all()[f"{line_arg[0]}.{nam_id}"),
-                name_attr, value_attr.strip('"'))
+        my_dict = storage.all()
+        for key, value in my_dict.items():
+            if my_args[0] == value.__class__.__name__:
+                if len(my_args) == 1:
+                    print("** instance id missing **")
+                    return
+                if my_args[1] == value.id:
+                    if len(my_args) == 2:
+                        print("** attribute name missing **")
+                        return
+                    if len(my_args) == 3:
+                        print("** value missing **")
+                        return
+                    all_objects = storage.all()
+                    setattr(all_objects[key], my_args[2], my_args[3])
+                    storage.save()
+                    return
+        for k in dictionary.keys():
+            if my_args[0] == k:
+                print("** no instance found **")
+                return
+        print("** class doesn't exist **")
 
 
 if __name__ == '__main__':
