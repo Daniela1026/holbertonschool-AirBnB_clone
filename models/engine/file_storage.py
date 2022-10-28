@@ -3,9 +3,7 @@
 This module is meant to define the storage class
 """
 import json
-from os import path
-from models.user import User
-from models.state import State
+import os.path
 
 class FileStorage:
     """
@@ -30,31 +28,28 @@ class FileStorage:
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)
         """
-        dict_to_json = {}
-        for k, v in FileStorage.__objects.items():
-            dict_to_json[k] = v.to_dict()
-        with open(FileStorage.__file_path, "w") as f:
-            json.dump(dict_to_json, f)
-        for key, value in self.__objects.items():
-            dict_json[key] = value.to_dict()
-        with open(self.__file_path, "w", encoding="utf-8") as file:
-            json.write(json.dumps(dict_json))
+        aux_dict = {key: value.to_dict() for key, value in self.all().items()}
+
+        with open(FileStorage.__file_path, mode="w+", encoding="utf-8") as f:
+            f.write(json.dumps(aux_dict))
 
     def reload(self):
         """Deserializes the JSON file to __objects (only if the JSON file
         (__file_path) exists ; otherwise, do nothing. If the file doesn’t
         exist, no exception should be raised)
         """
-        try:
-            with open(FileStorage.__file_path, "r") as f:
-                reader = json.load(f)
-                for k, v in reader.items():
-                    FileStorage.__objects[k] = eval(v['__class__'] + '(**v)')
-        except Exception:
-            pass
-        if path.exist(self.__file__path):
-            with open(self.__file__path, "r", encoding="utf-8") as file:
-                json_object = json.loads(file.read())
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.amenity import Amenity
+        from models.city import City
+        from models.place import Place
+        from models.state import State
+        from models.review import Review
 
-            for key, value in json_object.items():
-                self.__onjects[key] = eval (value['__class__'])(**value)
+        if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
+                str_read = f.read()
+
+            python_obj = json.loads(str_read)
+            FileStorage.__objects = {k: eval(f"{v['__class__']}(**{v})")
+                                     for k, v in python_obj.items()}
