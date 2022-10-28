@@ -52,6 +52,6 @@ class FileStorage:
             with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
                 str_read = f.read()
 
-            python_obj = json.loads(str_read)
-            FileStorage.__objects = {k: eval(f"{v['__class__']}(**{v})")
-                                     for k, v in python_obj.items()}
+                python_obj = json.loads(str_read)
+                FileStorage.__objects = {k: eval(f"{v['__class__']}(**{v})")
+                        for k, v in python_obj.items()}
