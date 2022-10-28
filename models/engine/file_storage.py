@@ -4,7 +4,6 @@ This module is meant to define the storage class
 """
 import json
 from os import path
-from models.base_model import BaseModel
 from models.user import User
 from models.state import State
 
