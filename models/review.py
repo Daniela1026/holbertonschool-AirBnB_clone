@@ -7,7 +7,8 @@ from models.base_model import BaseModel
 
 
 class Review(BaseModel):
-    """Setting new attributes"""
+    """Review class
+    """
     place_id = ""
     user_id = ""
     text = ""
