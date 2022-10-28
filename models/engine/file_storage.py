@@ -22,16 +22,19 @@ class FileStorage:
     def new(self, obj):
         """Sets in __objects the obj with key <obj class name>.id
         """
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
+         key = str(obj.__class__.__name__) + "." + str(obj.id)
+        value_dict = obj
+        FileStorage.__objects[key] = value_dict
 
     def save(self):
         """Serializes __objects to the JSON file (path: __file_path)
         """
-        aux_dict = {key: value.to_dict() for key, value in self.all().items()}
+        objects_dict = {}
+        for key, val in FileStorage.__objects.items():
+            objects_dict[key] = val.to_dict()
 
-        with open(FileStorage.__file_path, mode="w+", encoding="utf-8") as f:
-            f.write(json.dumps(aux_dict))
+        with open(FileStorage.__file_path, mode='w', encoding="UTF8") as fd:
+            json.dump(objects_dict, fd)
 
     def reload(self):
         """Deserializes the JSON file to __objects (only if the JSON file
@@ -39,6 +42,7 @@ class FileStorage:
         exist, no exception should be raised)
         """
         from models.base_model import BaseModel
+        from models.storage import storage
         from models.user import User
         from models.amenity import Amenity
         from models.city import City
@@ -46,10 +50,12 @@ class FileStorage:
         from models.state import State
         from models.review import Review
 
-        if os.path.exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
-                str_read = f.read()
-
-            python_obj = json.loads(str_read)
-            FileStorage.__objects = {k: eval(f"{v['__class__']}(**{v})")
-                                     for k, v in python_obj.items()}
+        try:
+            with open(FileStorage.__file_path, encoding="UTF8") as fd:
+                FileStorage.__objects = json.load(fd)
+            for key, val in FileStorage.__objects.items():
+                class_name = val["__class__"]
+                class_name = models.classes[class_name]
+                FileStorage.__objects[key] = class_name(**val)
+        except FileNotFoundError:
+            pass
