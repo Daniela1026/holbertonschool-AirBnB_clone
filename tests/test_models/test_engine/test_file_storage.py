@@ -5,7 +5,7 @@ Unit tests for file storage
 import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
-import os import path
+from os import path
 
 
 class TestFileStorage(unittest.TestCase):

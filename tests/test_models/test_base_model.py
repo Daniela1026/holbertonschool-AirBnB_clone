@@ -21,7 +21,7 @@ class TestBaseModel(unittest.TestCase):
         Check if the instance has created_at atribute
         """
         date = datetime
-        self.asserEqual(date, tipe(BaseModel).update_at))
+        self.asserEqual(date, tipe(BaseModel).update_at)
 
     def test_updated_at(self):
         """
@@ -42,20 +42,20 @@ class TestBaseModel(unittest.TestCase):
         """
         Test to check each update in the storage
         """
-         bm = BaseModel()
-         try:
-             os.remove("file.json")
-         except Exception:
-             pass
-         bm.save()
-         self.assertTrue(os.path.exists("file.json"))
+        bm = BaseModel()
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
+        bm.save()
+        self.assertTrue(os.path.exists("file.json"))
     
     def test_to_dict(self):
         """
         Test the to_dict method from BaseModel
         """
         base = BaseModel()
-        self.assertTrue(base.to_dict(), ['__class__], base.__class__.__name__)
+        self.assertTrue(base.to_dict(), ['__class_'], base.__class__.__name__)
 
         if __name__ == "__main__":
             unittest.main()
