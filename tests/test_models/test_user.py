@@ -1,16 +1,41 @@
 #!/usr/bin/python3
-"""Test User"""
+"""
+Test User
+"""
+
 import unittest
-import pep8
-from models.base_model import BaseModel
 from models.user import User
 
 
 class Testuser(unittest.TestCase):
+    """
+    Test at user/class
+    """
 
-    def test_pep8_conformance_user(self):
-        """Test that we conform to PEP8."""
-        pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/user.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
+    def test_email(self):
+        """
+        Test at email/atribute
+        """
+        us = User()
+        self.asserEqual(us.email, "")
+
+    def test_password(self):
+        """
+        Test at password/atribute
+        """
+        us = User()
+        self.asserEqual(us.password, "")
+
+    def test_firts_name(self):
+        """
+        Test at firts name/atribute
+        """
+        us = User()
+        self.asserEqueal(us.first_name, "")
+
+    def test_last_name(self):
+        """
+        Test at last name/atribute
+        """
+        us = User()
+        self.asserEqual(us.last_name, "")
