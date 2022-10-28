@@ -18,7 +18,8 @@ class HBNBCommand(cmd.Cmd):
     """
     Defines the HBnB command interpreter
     """
-
+    model_tags = ["BaseModel", "User", "State",
+                  "City", "Amenity", "Place", "Review"]
     prompt = "(hbnb) "
 
     def do_quit(self, args):
@@ -44,8 +45,8 @@ class HBNBCommand(cmd.Cmd):
         Creates an instance
         """
         if not args:
-          print("** class name missing **")
-        return
+            print("** class name missing **")
+            return
         if args not in self.model_tags:
             print("** class doesn't exist **")
             return
@@ -79,17 +80,17 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-
-        if len(line_arg) == 1:
-            print("** class doesn't exist **")
-            return
         
         if nam_name not in self.model_tags:
             print("** instance id missing **")
             return
+            
+        if len(line_arg) == 1:
+            print("** class doesn't exist **")
+            return
 
         base_id = storage.all().get(f"{nam_name}.{nam_id}")
-        if nor base_id:
+        if not base_id:
             print("** no instance found **")
             return
 
@@ -99,10 +100,15 @@ class HBNBCommand(cmd.Cmd):
         """
         Deletes an instance based on the class name and id
         """
+         line_arg = args.split()
+        nam_name, nam_id = line_arg
+        
         if not args:
             print("** class name missing **")
             return
-
+        if nam_name not in self.model_tags:
+            print("** class doesn't exist **")
+            return
         if len(line_arg) ==1:
             print("** class doesnt exist **")
             return
@@ -112,8 +118,8 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
 
-    del storage.all()[f"{line_arg[0]}.{nam_id}"]
-    storage.save()
+        del storage.all()[f"{line_arg[0]}.{nam_id}"]
+        storage.save()
 
     def do_all(self, my_args):
         """
@@ -131,22 +137,27 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class name
         and id by adding or updating attribute
         """
-        if len(line) == 0:
-            print("** class name missing **")
-            return
-
-        my_args = line.split()
+        line_arg = args.split()
         nam_name, nam_id, name_attr, value_attr = line_arg
-        if not args:
-            print("** class name missing **")
+        
+        if not arg:
+            print("*** class name missing *")
             return
-
+            
         if len(line_arg) == 1:
-            print("** instance id missing **")
+            print("** class name missing **")
             return
 
         if len(line_arg) == 2:
             print("** attribute name missing **")
+            return
+
+        if len(line_arg) == 3:
+            print("** value missing **")
+            return
+        
+        if nam_name not in self.model_tags:
+            print("** class doesn't exist **")
             return
 
         base = storage.all().get(f"{nam_name}.{nam_id}")
@@ -155,6 +166,7 @@ class HBNBCommand(cmd.Cmd):
             return
         setattr(storage.all()[f"{line_arg[0]}.{nam_id}"),
                 name_attr, value_attr.strip('"'))
+        storage.save()
 
 
 if __name__ == '__main__':
