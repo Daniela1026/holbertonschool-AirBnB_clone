@@ -7,5 +7,7 @@ from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """Setting new attributes"""
+    """
+    State class
+    """
     name = ""
