@@ -49,9 +49,17 @@ class FileStorage:
         exist, no exception should be raised)
         """
         try:
-            with open(self.__file_path, "r") as f:
-                s = json.load(f)
-            for key in s:
-                self.__objects[key] = cla_i[s[key]["__class__"]](**s[key])
-        except:
+            with open(FileStorage.__file_path) as f:
+                objdict = json.load(f)
+                for o in objdict.values():
+                    cls_name = o["__class__"]
+                    del o["__class__"]
+                    self.new(eval(cls_name)(**o))
+        except FileNotFoundError:
+            return
+            with open(FileStorage.__file_path, "r") as f:
+                reader = json.load(f)
+                for k, v in reader.items():
+                    FileStorage.__objects[k] = eval(v['__class__'] + '(**v)')
+        except Exception:
             pass
