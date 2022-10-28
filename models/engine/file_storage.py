@@ -20,19 +20,17 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-        """Sets in __objects the obj with key <obj class name>.id
-        """
-        key = str(obj.__class__.__name__) + "." + str(obj.id)
-        value_dict = obj
-        FileStorage.__objects[key] = value_dict
+        """Creates a new objects"""
+        key = obj.__class__.__name__ + '.' + obj.id
+        FileStorage.__objects[key] = obj
 
     def save(self):
-        """Serializes __objects to the JSON file (path: __file_path)
-        """
-        a_dict = {key: value.to_dict() for key, value in self.all().items()}
-
-        with open(FileStorage.__file_path, mode="w+", encoding="utf-8") as f:
-            f.write(json.dumps(a_dict))
+        """Saves the objects to JSON"""
+        new_dict = {}
+        for i in self.__objects:
+            new_dict[i] = self.__objects[i].to_dict()
+        with open(FileStorage.__file_path, 'w') as f:
+            f.write(json.dumps(new_dict, default=str))
 
     def reload(self):
         """Deserializes the JSON file to __objects (only if the JSON file
@@ -48,10 +46,14 @@ class FileStorage:
         from models.state import State
         from models.review import Review
 
-        if os.path.exists(FileStorage.__file_path):
-            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
-                str_read = f.read()
-
-                python_obj = json.loads(str_read)
-                FileStorage.__objects = {k: eval(f"{v['__class__']}(**{v})")
-                        for k, v in python_obj.items()}
+        classes_dict = {'BaseModel': BaseModel, 'Amenity': Amenity,
+                        'City': City, 'Place': Place, 'Review': Review,
+                        'User': User, 'State': State}
+        try:
+            with open(FileStorage.__file_path, 'r') as f:
+                for i, j in json.load(f).items():
+                    splitted = str(i).split('.')
+                    if splitted[0] in classes_dict.keys():
+                        self.__objects[i] = classes_dict[splitted[0]](**j)
+        except:
+            pass
