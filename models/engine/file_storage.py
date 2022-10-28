@@ -39,7 +39,7 @@ class FileStorage:
         (__file_path) exists ; otherwise, do nothing. If the file doesn’t
         exist, no exception should be raised)
         """
-         from models.base_model import BaseModel
+        from models.base_model import BaseModel
         from models.user import User
         from models.amenity import Amenity
         from models.city import City
@@ -47,9 +47,10 @@ class FileStorage:
         from models.state import State
         from models.review import Review
 
-        if path.exists(self.__file_path):
-            with open(self.__file_path, "r", encoding="utf-8") as file:
-                json_object = json.loads(file.read())
+        if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
+                str_read = f.read()
 
-            for key, value in json_object.items():
-                self.__objects[key] = eval(value['__class__'])(**value)
+            python_obj = json.loads(str_read)
+            FileStorage.__objects = {k: eval(f"{v['__class__']}(**{v})")
+                                     for k, v in python_obj.items()}
