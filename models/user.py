@@ -7,7 +7,8 @@ from models.base_model import BaseModel
 
 
 class User(BaseModel):
-    """Setting new attributes"""
+    """User class
+    """
     email = ""
     password = ""
     first_name = ""
