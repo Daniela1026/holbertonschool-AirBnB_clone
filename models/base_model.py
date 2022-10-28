@@ -15,18 +15,20 @@ class BaseModel:
         """
         initialize class BaseModel
         """
-        if kwargs:
-            for key, value in kwargs.items():
-                if key == '__class__':
+        if len(kwargs) > 0:
+            kwargs["created_at"] = datetime.strptime(kwargs["created_at"],
+                                                     "%Y-%m-%dT%H:%M:%S.%f")
+            kwargs["updated_at"] = datetime.strptime(kwargs["updated_at"],
+                                                     "%Y-%m-%dT%H:%M:%S.%f")
+            for k, v in kwargs.items():
+                if k == "__class__":
                     continue
-                if key == 'created_at' or key == 'update_at':
-                    value = datetime.fromisoformat(value)
-                setattr(self, key, value)
+                else:
+                    setattr(self, k, v)
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
-            storage.new(self)
+            self.created_at = datetime.today()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """
@@ -40,8 +42,7 @@ class BaseModel:
         """
         Updates all info into the storage
         """
-        self.updated_at = datetime.now()
-        storage.save()
+        self.updated_at = datetime.today()
 
     def to_dict(self):
         """
