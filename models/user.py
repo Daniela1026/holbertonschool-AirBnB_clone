@@ -3,6 +3,7 @@
 This module will define User class that will inherate from base model
 its attributes/methods
 """
+
 from models.base_model import BaseModel
 
 

@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 This module will define Review class that will inherate from base model
 its attributes/methods
