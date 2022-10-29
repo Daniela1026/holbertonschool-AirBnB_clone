@@ -23,7 +23,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertIs(storage.all(), storage._FileStorage__objects)
 
     def test_reload(self):
-    """Test Reload Method"""
+        """Test Reload Method"""
         storage = FileStorage()
         storage.save()
         storage.reload()
