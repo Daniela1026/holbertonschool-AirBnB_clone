@@ -46,14 +46,18 @@ class HBNBCommand(cmd.Cmd):
         Creates a new instance of a specified class and prints
         instance's unique id
         """
-        argl = parse(arg)
-        if len(argl) == 0:
+        if len(args) == 0:
             print("** class name missing **")
-        elif argl[0] not in HBNBCommand.__classes:
+        elif args not in classes:
             print("** class doesn't exist **")
         else:
-            print(eval(argl[0])().id)
-            storage.save()
+            for i in classes:
+                if i == args:
+                    a1 = str(args) + '()'
+                    a = eval(a1)
+            print(a.id)
+            a.save()
+        pass
 
     def do_show(self, line):
         """
