@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 """
-<<<<<<< HEAD
 The entry point of the command interpreter
 """
 import cmd
