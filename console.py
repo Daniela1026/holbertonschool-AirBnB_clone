@@ -43,8 +43,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
 
     """Creates a new instance of a class and prints ID and saves to file.
-    Usage: create <class name>
-    Usage: <class name>.create()"""
+    """
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -56,8 +55,6 @@ class HBNBCommand(cmd.Cmd):
         """
 Prints the string representation of an instance
 based on the class name and id.
-Usage: show <class name> <id>
-Usage: <class name>.show(<id>)
 """
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
@@ -204,11 +201,7 @@ usage: <class name>.update(<id>, <dictionary representation>)"""
         return (argumentString)
 
     def help_count(self):
-        print("\n\
-****HELP****\n\
-Will count number of instances of a class.\n\
-Usage: <class name>.count()\n\
-")
+        print("\n\")
 
     def count_instance(self, arg):
         """retrieves number of instances of a class"""
