@@ -43,11 +43,21 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
 <<<<<<< HEAD
 
+<<<<<<< HEAD
     """
     Creates a new instance of a class and prints ID and saves to file.
     Usage: create <class name>
     Usage: <class name>.create()
     """
+=======
+<<<<<<< HEAD
+    """Creates a new instance of a class and prints ID and saves
+    to file."""
+=======
+    """Creates a new instance of a class and prints ID and saves to file.
+    """
+>>>>>>> cd64214365cc8b8f1b7a1b164ed65d31ceb47551
+>>>>>>> 8dab1ebf6ac8a2220954e70e5a9547aff88c949f
 =======
         """
 ****HELP****
@@ -64,6 +74,9 @@ Usage: <class name>.create()
         newInstance.save()
 
     def do_show(self, arg):
+<<<<<<< HEAD
+        """Prints the string representation of an instance"""
+=======
         """
 <<<<<<< HEAD
         Prints the string representation of an instance
@@ -78,7 +91,11 @@ based on the class name and id.
 Usage: show <class name> <id>
 Usage: <class name>.show(<id>)
 """
+<<<<<<< HEAD
 >>>>>>> 132d0c48c28e62bff744a1712802b2d1a56d5b66
+=======
+>>>>>>> cd64214365cc8b8f1b7a1b164ed65d31ceb47551
+>>>>>>> 8dab1ebf6ac8a2220954e70e5a9547aff88c949f
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -89,6 +106,9 @@ Usage: <class name>.show(<id>)
         print(objectsInStorage[objectAsKey])
 
     def do_destroy(self, arg):
+<<<<<<< HEAD
+        """Deletes an instance based on the class name and id"""
+=======
         """
 <<<<<<< HEAD
         Deletes an instance based on the class name and id
@@ -112,6 +132,10 @@ Usage: <class name>.destroy(<id>)
         models.storage.save()
 
     def do_all(self, arg):
+<<<<<<< HEAD
+        """Prints list of strings of all instances or specified
+        instances"""
+=======
         """
 <<<<<<< HEAD
         Prints list of strings of all instances or specified instances
@@ -142,6 +166,9 @@ Usage: <class name>.all()
         print(listOfObjectToPrint)
 
     def do_update(self, line):
+<<<<<<< HEAD
+        """Updates an instance based on the class name and id."""
+=======
         """
 <<<<<<< HEAD
         Updates an instance based on the class name and id.
@@ -253,11 +280,19 @@ usage: <class name>.update(<id>, <dictionary representation>)"""
         return (argumentString)
 
     def help_count(self):
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+=======
+        print("\n\")
+>>>>>>> cd64214365cc8b8f1b7a1b164ed65d31ceb47551
+=======
         print("\n\
 ****HELP****\n\
 Will count number of instances of a class.\n\
 Usage: <class name>.count()\n\
 ")
+>>>>>>> 132d0c48c28e62bff744a1712802b2d1a56d5b66
 
     def count_instance(self, arg):
         """retrieves number of instances of a class"""
