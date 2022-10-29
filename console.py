@@ -41,9 +41,12 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, arg):
-
-    """Creates a new instance of a class and prints ID and saves to file.
-    """
+        """
+****HELP****
+Creates a new instance of a class and prints ID and saves to file.
+Usage: create <class name>
+Usage: <class name>.create()
+"""
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -53,8 +56,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
+****HELP****
 Prints the string representation of an instance
 based on the class name and id.
+Usage: show <class name> <id>
+Usage: <class name>.show(<id>)
 """
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
@@ -67,7 +73,10 @@ based on the class name and id.
 
     def do_destroy(self, arg):
         """
+****HELP****
 Deletes an instance based on the class name and id
+Usage: destroy <class name> <id>
+Usage: <class name>.destroy(<id>)
 """
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
@@ -80,7 +89,11 @@ Deletes an instance based on the class name and id
 
     def do_all(self, arg):
         """
+****HELP****
 Prints list of strings of all instances or specified instances
+Usage: all - Prints every saved object
+Usage: all <class name> - prints every saved object of "class name"
+Usage: <class name>.all()
 """
         lineAsArgs = shlex.split(arg)
         objectsInStorage = models.storage.all()
@@ -98,8 +111,14 @@ Prints list of strings of all instances or specified instances
 
     def do_update(self, line):
         """
+****HELP****
 Updates an instance based on the class name and id.
-"""
+Usage: update <class name> <id>, <attribute name>, <attribute value>
+Usage: <class name>.update(<id>, <attribute name>, <attribute value>)
+****EXTRA****
+Can take a dictionary as input to update multiple attributes at once
+Usage: update <class name> <id>, <dictionary representation>
+usage: <class name>.update(<id>, <dictionary representation>)"""
         lineArgs = shlex.split(line)
         ArgLineDict = None
         if not self.verify_class_in_project(lineArgs):
@@ -191,7 +210,11 @@ Updates an instance based on the class name and id.
         return (argumentString)
 
     def help_count(self):
-        print("\n\")
+        print("\n\
+****HELP****\n\
+Will count number of instances of a class.\n\
+Usage: <class name>.count()\n\
+")
 
     def count_instance(self, arg):
         """retrieves number of instances of a class"""
@@ -235,56 +258,6 @@ Updates an instance based on the class name and id.
             print("** no instance found **")
             return False
         return True
-
-    def default(self, line):
-        """Default command that handles class cmds: <class name>.func()"""
-        args = line.split('.')
-        class_arg = args[0]
-        if len(args) == 1:
-            print("*** Unknown syntax: {}".format(line))
-            return
-        try:
-            args = args[1].split('(')
-            command = args[0]
-            if command == 'all':
-                HBNBCommand.do_all(self, class_arg)
-            elif command == 'count':
-                HBNBCommand.do_count(self, class_arg)
-            elif command == 'show':
-                args = args[1].split(')')
-                id_arg = args[0]
-                id_arg = id_arg.strip("'")
-                id_arg = id_arg.strip('"')
-                arg = class_arg + ' ' + id_arg
-                HBNBCommand.do_show(self, arg)
-            elif command == 'destroy':
-                args = args[1].split(')')
-                id_arg = args[0]
-                id_arg = id_arg.strip('"')
-                id_arg = id_arg.strip("'")
-                arg = class_arg + ' ' + id_arg
-                HBNBCommand.do_destroy(self, arg)
-            elif command == 'update':
-                args = args[1].split(',')
-                id_arg = args[0].strip("'")
-                id_arg = id_arg.strip('"')
-                name_arg = args[1].strip(',')
-                val_arg = args[2]
-                name_arg = name_arg.strip(' ')
-                name_arg = name_arg.strip("'")
-                name_arg = name_arg.strip('"')
-                val_arg = val_arg.strip(' ')
-                val_arg = val_arg.strip(')')
-                arg = class_arg + ' ' + id_arg + ' ' + name_arg + ' ' + val_arg
-                HBNBCommand.do_update(self, arg)
-            else:
-                print("*** Unknown syntax: {}".format(line))
-        except IndexError:
-            print("*** Unknown syntax: {}".format(line))
-
-def parse_line(line):
-    """Helper method to parse user typed input"""
-    return tuple(line.split())
 
     @staticmethod
     def verify_attribute_arguments(args):
