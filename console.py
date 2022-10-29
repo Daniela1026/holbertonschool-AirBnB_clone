@@ -1,4 +1,4 @@
-!/usr/bin/python3
+#!/usr/bin/python3
 """
 Entry to command interpreter
 """
@@ -169,16 +169,6 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         """Default command that handles class cmds: <class name>.func()"""
-        """
-        <class name>.all(): retrieve all instances of a class
-        <class name>.count(): retrieve the number of instances of a class
-        <class name>.show(<id>): retrieve an instance based on its ID
-        <class name>.destroy(<id>): destroy an instance based on his ID
-        <class name>.update(<id>, <attribute name>, <attribute value>):
-        update an instance based on his ID
-        <class name>.update(<id>, <dictionary representation>):
-        update an instance based on his ID
-        """
         args = line.split('.')
         class_arg = args[0]
         if len(args) == 1:
