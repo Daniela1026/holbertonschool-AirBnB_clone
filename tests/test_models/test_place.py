@@ -5,6 +5,7 @@ Test Place
 import unittest
 from models.place import Place
 
+
 class TestPlace(inittest.TestCase)
     """ 
     Test Place
