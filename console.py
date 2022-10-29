@@ -14,7 +14,6 @@ from models.review import Review
 from models.place import Place
 from models.state import State
 
-
 class HBNBCommand(cmd.Cmd):
     """
     An interpreter class inheriting from cmd
@@ -76,8 +75,8 @@ class HBNBCommand(cmd.Cmd):
         Prints the string repr of an instance based
         on class name and id
         """
-        nam_name, nam_id = line_arg 
         line_arg = args.split()
+        m_name, m_id = line_arg
 
         if not args:
             print("** class name missing **")
@@ -89,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-        base_id = storage.all().get(f"{nam_name}.{nam_id}")
+        base_id = storage.all().get(f"{m_name}.{m_id}")
         if not base_id:
             print("** no instance found **")
             return
@@ -101,8 +100,8 @@ class HBNBCommand(cmd.Cmd):
         deletes an instance of a class based on class name and id
         saves changes to json file
         """
-        nam_name, nam_id = line_arg
         line_arg = args.split()
+        m_name, m_id = line_arg
 
         if not args:
             print("** class name missing **")
@@ -114,12 +113,12 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
 
-        base_id = storage.all().get(f"{nam_name}.{nam_id}")
+        base_id = storage.all().get(f"{m_name}.{m_id}")
         if not base_id:
             print("** no instance found **")
             return
 
-        del storage.all()[f"{line_arg[0]}.{nam_id}"]
+        del storage.all()[f"{line_arg[0]}.{m_id}"]
         storage.save()
 
     def do_all(self, name):
@@ -141,9 +140,8 @@ class HBNBCommand(cmd.Cmd):
         instance is identified by class name and id
         only one attribute and value can be updated per call
         """
-       nam_name, m_id, name_attr, value_attr = line_arg
-       line_arg = args.split()
-
+        line_arg = args.split()
+        m_name, m_id, name_attr, value_attr = line_arg
         if not args:
             print("** class name missing **")
             return
@@ -160,16 +158,16 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
 
-        if nam_name not in self.model_tags:
+        if m_name not in self.model_tags:
             print("** class doesn't exist **")
             return
 
-        base = storage.all().get(f"{nam_name}.{nam_id}")
+        base = storage.all().get(f"{m_name}.{m_id}")
         if not base:
             print("** no instance found **")
             return
 
-        setattr(storage.all()[f"{line_arg[0]}.{nam_id}"],
+        setattr(storage.all()[f"{line_arg[0]}.{m_id}"],
                 name_attr, value_attr.strip('"'))
         storage.save()
 
