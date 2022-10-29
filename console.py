@@ -44,12 +44,20 @@ class HBNBCommand(cmd.Cmd):
 <<<<<<< HEAD
 
 <<<<<<< HEAD
+    """
+    Creates a new instance of a class and prints ID and saves to file.
+    Usage: create <class name>
+    Usage: <class name>.create()
+    """
+=======
+<<<<<<< HEAD
     """Creates a new instance of a class and prints ID and saves
     to file."""
 =======
     """Creates a new instance of a class and prints ID and saves to file.
     """
 >>>>>>> cd64214365cc8b8f1b7a1b164ed65d31ceb47551
+>>>>>>> 8dab1ebf6ac8a2220954e70e5a9547aff88c949f
 =======
         """
 ****HELP****
@@ -70,13 +78,24 @@ Usage: <class name>.create()
         """Prints the string representation of an instance"""
 =======
         """
+<<<<<<< HEAD
+        Prints the string representation of an instance
+        based on the class name and id.
+        Usage: show <class name> <id>
+        Usage: <class name>.show(<id>)
+        """
+=======
 ****HELP****
 Prints the string representation of an instance
 based on the class name and id.
 Usage: show <class name> <id>
 Usage: <class name>.show(<id>)
 """
+<<<<<<< HEAD
+>>>>>>> 132d0c48c28e62bff744a1712802b2d1a56d5b66
+=======
 >>>>>>> cd64214365cc8b8f1b7a1b164ed65d31ceb47551
+>>>>>>> 8dab1ebf6ac8a2220954e70e5a9547aff88c949f
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -91,6 +110,12 @@ Usage: <class name>.show(<id>)
         """Deletes an instance based on the class name and id"""
 =======
         """
+<<<<<<< HEAD
+        Deletes an instance based on the class name and id
+        Usage: destroy <class name> <id>
+        Usage: <class name>.destroy(<id>)
+        """
+=======
 ****HELP****
 Deletes an instance based on the class name and id
 Usage: destroy <class name> <id>
@@ -112,6 +137,13 @@ Usage: <class name>.destroy(<id>)
         instances"""
 =======
         """
+<<<<<<< HEAD
+        Prints list of strings of all instances or specified instances
+        Usage: all - Prints every saved object
+        Usage: all <class name> - prints every saved object of "class name"
+        Usage: <class name>.all()
+        """
+=======
 ****HELP****
 Prints list of strings of all instances or specified instances
 Usage: all - Prints every saved object
@@ -138,6 +170,16 @@ Usage: <class name>.all()
         """Updates an instance based on the class name and id."""
 =======
         """
+<<<<<<< HEAD
+        Updates an instance based on the class name and id.
+        Usage: update <class name> <id>, <attribute name>, <attribute value>
+        Usage: <class name>.update(<id>, <attribute name>, <attribute value>)
+        ****EXTRA****
+        Can take a dictionary as input to update multiple attributes at once
+        Usage: update <class name> <id>, <dictionary representation>
+        usage: <class name>.update(<id>, <dictionary representation>)
+        """
+=======
 ****HELP****
 Updates an instance based on the class name and id.
 Usage: update <class name> <id>, <attribute name>, <attribute value>
@@ -207,7 +249,7 @@ usage: <class name>.update(<id>, <dictionary representation>)"""
         if len(lineAsArgs) == 0:
             print("*** unknown syntax: " + line)
             return
-        if lineAsArgs[0][1] not in listOfCmdMethods:
+    if lineAsArgs[0][1] not in listOfCmdMethods:
             print("*** command: " + lineAsArgs[0][1] + " is not reccognised")
             return
         className = lineAsArgs[0][0]
