@@ -17,6 +17,7 @@ from models.review import Review
 from models.engine.file_storage import FileStorage
 import shlex
 
+
 class HBNBCommand(cmd.Cmd):
     """
     an interpreter class inheriting from cmd
@@ -60,7 +61,6 @@ class HBNBCommand(cmd.Cmd):
 
         except:
             print("** class doesn't exist **")
-
 
     def do_show(self, line):
         """
