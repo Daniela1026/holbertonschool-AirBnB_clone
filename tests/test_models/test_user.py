@@ -1,11 +1,16 @@
 #!/usr/bin/python3
-"""Unittest module for the User Class."""
+"""
+Test User
+"""
 
 import unittest
 from models.user import User
 
+
 class TestUser(unittest.TestCase):
-    """Tests the attributes of User class."""
+    """
+    Test at user/class
+    """
 
     def test_email(self):
         """Test at email/attribute"""
@@ -15,15 +20,14 @@ class TestUser(unittest.TestCase):
     def test_password(self):
         """Test at password/attribute"""
         us = User()
-        self.resetStorage(us.password, "")
+        self.assertEqual(us.password, "")
 
-    def test_firt_name(self):
-        """Test at first_name/attribute"""
+    def test_first_name(self):
+        """Test at fitst_name/attribute"""
         us = User()
-        self.asserEqual(us.first_name, "")
+        self.assertEqual(us.first_name, "")
 
     def test_last_name(self):
-        """Tests instantiation of User class."""
+        """Test at last_name/attribute"""
         us = User()
-        self.asserEqual(us.last_name, "")
-
+        self.assertEqual(us.last_name, "")
