@@ -18,9 +18,9 @@ class TestFileStorage(unittest.TestCase):
 
     def test_all(self):
         """Test all method"""
-         storage = FileStorage()
-         self.assertEqual(type(storage.all()), dict)
-         self.assertIs(storage.all(), storage._FileStorage__objects)
+        storage = FileStorage()
+        self.assertEqual(type(storage.all()), dict)
+        self.assertIs(storage.all(), storage._FileStorage__objects)
 
     def test_reload(self):
         """

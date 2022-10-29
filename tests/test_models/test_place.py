@@ -7,6 +7,7 @@ from models.place import Place
 from datetime import datetime
 import os
 
+
 class TestPlace(inittest.TestCase)
     """ 
     Test Place
