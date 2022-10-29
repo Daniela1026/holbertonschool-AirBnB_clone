@@ -42,9 +42,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
 
-    """Creates a new instance of a class and prints ID and saves to file.
-    Usage: create <class name>
-    Usage: <class name>.create()"""
+    """Creates a new instance of a class and prints ID and saves
+    to file."""
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -53,12 +52,7 @@ class HBNBCommand(cmd.Cmd):
         newInstance.save()
 
     def do_show(self, arg):
-        """
-Prints the string representation of an instance
-based on the class name and id.
-Usage: show <class name> <id>
-Usage: <class name>.show(<id>)
-"""
+        """Prints the string representation of an instance"""
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -69,11 +63,7 @@ Usage: <class name>.show(<id>)
         print(objectsInStorage[objectAsKey])
 
     def do_destroy(self, arg):
-        """
-Deletes an instance based on the class name and id
-Usage: destroy <class name> <id>
-Usage: <class name>.destroy(<id>)
-"""
+        """Deletes an instance based on the class name and id"""
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -84,12 +74,8 @@ Usage: <class name>.destroy(<id>)
         models.storage.save()
 
     def do_all(self, arg):
-        """
-Prints list of strings of all instances or specified instances
-Usage: all - Prints every saved object
-Usage: all <class name> - prints every saved object of "class name"
-Usage: <class name>.all()
-"""
+        """Prints list of strings of all instances or specified
+        instances"""
         lineAsArgs = shlex.split(arg)
         objectsInStorage = models.storage.all()
         listOfObjectToPrint = []
@@ -105,14 +91,7 @@ Usage: <class name>.all()
         print(listOfObjectToPrint)
 
     def do_update(self, line):
-        """
-Updates an instance based on the class name and id.
-Usage: update <class name> <id>, <attribute name>, <attribute value>
-Usage: <class name>.update(<id>, <attribute name>, <attribute value>)
-****EXTRA****
-Can take a dictionary as input to update multiple attributes at once
-Usage: update <class name> <id>, <dictionary representation>
-usage: <class name>.update(<id>, <dictionary representation>)"""
+        """Updates an instance based on the class name and id."""
         lineArgs = shlex.split(line)
         ArgLineDict = None
         if not self.verify_class_in_project(lineArgs):
@@ -204,11 +183,7 @@ usage: <class name>.update(<id>, <dictionary representation>)"""
         return (argumentString)
 
     def help_count(self):
-        print("\n\
-****HELP****\n\
-Will count number of instances of a class.\n\
-Usage: <class name>.count()\n\
-")
+
 
     def count_instance(self, arg):
         """retrieves number of instances of a class"""
