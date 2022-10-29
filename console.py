@@ -44,34 +44,23 @@ class HBNBCommand(cmd.Cmd):
         """
         return False
 
-    def do_create(self, model_name: str):
-        """ create [model]
-        Creates a new instance of BaseModel"""
-        if not model_name:
-            print('** class name missing **')
-            return False
-        if model_name not in self.valid_models:
-            print('** class doesn\'t exist **')
-            return False
+    def do_create(self, args):
+        """
+        Creates a new instance of a specified class and prints
+        instance's unique id
+        """
+        if len(args) == 0:
+            print("** class name missing **")
+            return
+        try:
+            args = shlex.split(args)
+            new_instance = eval(args[0])()
+            new_instance.save()
+            print(new_instance.id)
 
-        if model_name == 'BaseModel':
-            model = BaseModel()
-        elif model_name == 'User':
-            model = User()
-        elif model_name == 'State':
-            model = State()
-        elif model_name == 'City':
-            model = City()
-        elif model_name == 'Amenity':
-            model = Amenity()
-        elif model_name == 'Place':
-            model = Place()
-        else:
-            model = Review()
+        except:
+            print("** class doesn't exist **")
 
-        model.save()
-
-        print(model.id)
 
     def do_show(self, line):
         """
