@@ -113,16 +113,3 @@ class TestUser(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-        """Test at password/attribute"""
-        us = User()
-        self.assertEqual(us.password, "")
-
-    def test_first_name(self):
-        """Test at fitst_name/attribute"""
-        us = User()
-        self.assertEqual(us.first_name, "")
-
-    def test_last_name(self):
-        """Test at last_name/attribute"""
-        us = User()
-        self.assertEqual(us.last_name, "")
