@@ -68,8 +68,6 @@ based on the class name and id.
     def do_destroy(self, arg):
         """
 Deletes an instance based on the class name and id
-Usage: destroy <class name> <id>
-Usage: <class name>.destroy(<id>)
 """
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
@@ -83,9 +81,6 @@ Usage: <class name>.destroy(<id>)
     def do_all(self, arg):
         """
 Prints list of strings of all instances or specified instances
-Usage: all - Prints every saved object
-Usage: all <class name> - prints every saved object of "class name"
-Usage: <class name>.all()
 """
         lineAsArgs = shlex.split(arg)
         objectsInStorage = models.storage.all()
@@ -104,12 +99,7 @@ Usage: <class name>.all()
     def do_update(self, line):
         """
 Updates an instance based on the class name and id.
-Usage: update <class name> <id>, <attribute name>, <attribute value>
-Usage: <class name>.update(<id>, <attribute name>, <attribute value>)
-****EXTRA****
-Can take a dictionary as input to update multiple attributes at once
-Usage: update <class name> <id>, <dictionary representation>
-usage: <class name>.update(<id>, <dictionary representation>)"""
+"""
         lineArgs = shlex.split(line)
         ArgLineDict = None
         if not self.verify_class_in_project(lineArgs):
