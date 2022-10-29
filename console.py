@@ -46,17 +46,14 @@ class HBNBCommand(cmd.Cmd):
         Creates a new instance of a specified class and prints
         instance's unique id
         """
-        line_read = line.split(" ")
-        if line_read == ['']:
+        argl = parse(arg)
+        if len(argl) == 0:
             print("** class name missing **")
-        elif line_read[0] not in HBNBCommand.class_id.keys():
+        elif argl[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
-            module = HBNBCommand.class_id[line_read[0]]
-            b1 = eval(
-                f"models.{module}.{line_read[0]}()")
-            b1.save()
-            print(b1.id)
+            print(eval(argl[0])().id)
+            storage.save()
 
     def do_show(self, line):
         """
