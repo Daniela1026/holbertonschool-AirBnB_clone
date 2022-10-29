@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-
 """
-Contains the FileStorage class
+Write a class FileStorage that serializes instances to a JSON
 """
 
 import json

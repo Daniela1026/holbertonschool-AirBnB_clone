@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """
+Write a class BaseModel that defines all
 """
 import uuid
 from datetime import datetime
@@ -8,7 +9,7 @@ from models import storage
 
 class BaseModel:
     """
-    Base class for all common attributes/methods for other classes
+    common attributes/methods for other classes
     """
 
     def __init__(self, *args, **kwargs):
