@@ -1,14 +1,16 @@
 #!/usr/bin/python3
+
 """
 This module will define Place class that will inherate from base model
 its attributes/methods
 """
+
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
     """
-    Place class
+    Place Class
     """
     city_id = ""
     user_id = ""
