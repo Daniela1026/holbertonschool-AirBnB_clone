@@ -6,8 +6,13 @@ import unittest
 from models.place import Place
 
 
+<<<<<<< HEAD
 class TestPlace(unittest.TestCase):
     """
+=======
+class TestPlace(inittest.TestCase)
+    """ 
+>>>>>>> 29bbad0cefb06d87f6c4bc04f7e0988a8c27dc42
     Test Place
     """
 
