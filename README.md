@@ -1,4 +1,4 @@
-![Algorithm schema](./hbnb.png)
+![Algorithm schema](./images/hbnb.png)
 
 # AirBnB clone - The console 🤓💡</h1>
 
