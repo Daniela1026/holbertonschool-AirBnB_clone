@@ -9,9 +9,6 @@ from os import path
 
 
 class FileStorage:
-    """File Storage Class"""
-
-class FileStorage:
     """
     File Storage class
     """
