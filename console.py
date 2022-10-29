@@ -3,6 +3,7 @@
 The entry point for the command intepreter
 """
 
+import models
 import cmd
 import json
 import os
