@@ -6,78 +6,69 @@ import unittest
 from models.place import Place
 
 
+<<<<<<< HEAD
+class TestPlace(unittest.TestCase):
+    """
+=======
 class TestPlace(inittest.TestCase)
     """ 
+>>>>>>> 29bbad0cefb06d87f6c4bc04f7e0988a8c27dc42
     Test Place
     """
 
     def test_city_id(self):
         """
-        Test at city/atribute/id
+        Test at city/attribute
         """
         pla = Place()
         self.assertEqual(pla.city_id, "")
 
     def test_user_id(self):
-        """
-        Test at user/atribute/id
-        """
+        """Test at id/attribute"""
         pla = Place()
-        self.asserEqual(pla.user_id, "")
+        self.assertEqual(pla.user_id, "")
 
     def test_name(self):
-        """
-        Test at name/atribute
-        """
+        """Test at name/attribute"""
         pla = Place()
-        self.asserEqueal(pla.number_rooms, 0)
+        self.assertEqual(pla.name, "")
 
     def test_description(self):
-        """
-        Test at description/atribute
-        """
+        """Test at description/attribute"""
         pla = Place()
-        self.asserEqueal(pla.description, "")
+        self.assertEqual(pla.description, "")
 
     def test_num_rooms(self):
-        """
-        Test at number/rooms
-        """
+        """Test at number/rooms"""
         pla = Place()
-        self.asserEqueal(pla.number_rooms, 0)
+        self.assertEqual(pla.number_rooms, 0)
 
     def test_num_bathrooms(self):
-        """
-        Test at number bathrooms/atribute
-        """
+        """Test at bathrooms/attribute"""
         pla = Place()
-        self.asserEqueal(pla.number_bathrooms, 0)
+        self.assertEqual(pla.number_bathrooms, 0)
 
     def test_max_guest(self):
-        """
-        Test at number max the guest/atribute
-        """
+        """Test at max_guest/attribute"""
         pla = Place()
-        self.asserEqual(pla.max_guest, 0)
+        self.assertEqual(pla.max_guest, 0)
 
-    def test_price_nigth(self):
-        """
-        Test at price to nigth/atribute
-        """
-        pla = Place
-        self.asserEqual(pla.test_price_nigth, 0)
-
-    def test_latitud(self)
-        """
-        Test at latitude/atribute
-        """
+    def test_price_by_night(self):
+        """Test at price_by_night/attribute"""
         pla = Place()
-        self.asserEqueal(pla.test_latitud, 0.0)
+        self.assertEqual(pla.price_by_night, 0)
 
-    def test_amenity_id(self):
-        """
-        Test at amenity id/atribute
-        """
+    def test_latitude(self):
+        """Test at latitude/attribute"""
         pla = Place()
-        self.asserEqual(pla.amenity_id, [])
+        self.assertEqual(pla.latitude, 0.0)
 
+    def test_longitude(self):
+        """Test at longitude/attribute"""
+        pla = Place()
+        self.assertEqual(pla.longitude, 0.0)
+
+    def test_amenity_ids(self):
+        """Test at amenity_ids/attribute"""
+        pla = Place()
+        self.assertEqual(pla.amenity_ids, [])
