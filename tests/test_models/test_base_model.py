@@ -21,7 +21,7 @@ class TestBaseModel(unittest.TestCase):
         Check if the instance has created_at atribute
         """
         date = datetime
-        self.asserEqual(date, tipe(BaseModel).update_at)
+        self.asserEqual(date, type(BaseModel).created_at)
 
     def test_updated_at(self):
         """
@@ -34,9 +34,9 @@ class TestBaseModel(unittest.TestCase):
         """
         Check the to_dict method from BaseModel
         """
-        base = BaseModel().__str__()
+        base = BaseModel()
         _str = BaseModel().__str__()
-        self.assertNotEqual(_str, base)
+        self.asserNotEqual(os.path.exits(_str, base)
 
     def test_save(self):
         """
@@ -55,7 +55,7 @@ class TestBaseModel(unittest.TestCase):
         Test the to_dict method from BaseModel
         """
         base = BaseModel()
-        self.assertTrue(base.to_dict(), ['__class_'], base.__class__.__name__)
+        self.assertEqual(base.to_dict(), ['__class_'], base.__class__.__name__)
 
-        if __name__ == "__main__":
-            unittest.main()
+if __name__ == "__main__":
+    unittest.main()
