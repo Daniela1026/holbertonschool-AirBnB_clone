@@ -46,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
         Creates a new instance of a specified class and prints
         instance's unique id
         """
-        args = shlex.split(arg)
+        args = shlex.split(line)
         if not args:
             print("** class name missing **")
         elif args[0] in class_items:
