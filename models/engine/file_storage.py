@@ -46,7 +46,6 @@ class FileStorage:
             with open(self.__file_path, "r", encoding="utf-8") as file:
                 json_object = json.loads(file.read())
 
-<<<<<<< HEAD
         attributes = {
                 "BaseModel":
                 {"id": str,
@@ -82,7 +81,6 @@ class FileStorage:
                     "text": str}
 }
         return attributes
-=======
+    
             for key, value in json_object.items():
                 self.__objects[key] = eval(value['__class__'])(**value)
->>>>>>> 7b2346e6d79f9e3bdccdcfb68a7950aea827d7cc
