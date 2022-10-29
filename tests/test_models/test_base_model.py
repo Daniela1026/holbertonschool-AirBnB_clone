@@ -2,7 +2,8 @@
 """
 Unitest Class BaseModel
 """
-import os                                                       import unittest
+import os
+import unittest
 from datetime import datetime
 from models.base_model import BaseModel
 
