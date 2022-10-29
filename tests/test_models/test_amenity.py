@@ -3,14 +3,12 @@
 Test Amenity
 """
 import unittest
-from models. amenity import Amenity
+from models.amenity import Amenity
 
 
-class Testamenity(unittest.TestCase):
+class TestAmenity(unittest.TestCase):
 
-    def test_amenity(self):
-        """
-        Test attributes of Class Amenity
-        """
-        nm = Amenity()
-        self.assertEqual(nm.name, "")
+    def test_name(self):
+        """Test attributes or class Amenity"""
+        am = Amenity()
+        self.assertEqual(am.name, "")

@@ -1,12 +1,21 @@
 #!/usr/bin/python3
+<<<<<<< HEAD
 """ Unit tests for class User """
+=======
+"""
+Test User
+"""
+
+>>>>>>> b10ecae2e846e3f7ca5fc11a3d609585d5ca13ee
 import unittest
 from models.user import User
 from datetime import datetime
 from time import sleep
 
 
+
 class TestUser(unittest.TestCase):
+<<<<<<< HEAD
     """ Instantiation of User """
 
     def test_instantiate(self):
@@ -30,6 +39,11 @@ class TestUser(unittest.TestCase):
         user1 = User()
         user2 = User()
         self.assertNotEqual(user1.id, user2.id)
+=======
+    """
+    Test at user/class
+    """
+>>>>>>> b10ecae2e846e3f7ca5fc11a3d609585d5ca13ee
 
     def test_email(self):
         """ Happy pass email """
@@ -38,6 +52,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(user1, "email"))
 
     def test_password(self):
+<<<<<<< HEAD
         """ Happy pass password """
         user1 = User()
         self.assertEqual(str, type(User.password))
@@ -105,3 +120,18 @@ class TestUser(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+=======
+        """Test at password/attribute"""
+        us = User()
+        self.assertEqual(us.password, "")
+
+    def test_first_name(self):
+        """Test at fitst_name/attribute"""
+        us = User()
+        self.assertEqual(us.first_name, "")
+
+    def test_last_name(self):
+        """Test at last_name/attribute"""
+        us = User()
+        self.assertEqual(us.last_name, "")
+>>>>>>> b10ecae2e846e3f7ca5fc11a3d609585d5ca13ee
