@@ -41,12 +41,10 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, arg):
-        """
-****HELP****
-Creates a new instance of a class and prints ID and saves to file.
-Usage: create <class name>
-Usage: <class name>.create()
-"""
+
+    """Creates a new instance of a class and prints ID and saves to file.
+    Usage: create <class name>
+    Usage: <class name>.create()"""
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -56,7 +54,6 @@ Usage: <class name>.create()
 
     def do_show(self, arg):
         """
-****HELP****
 Prints the string representation of an instance
 based on the class name and id.
 Usage: show <class name> <id>
@@ -73,7 +70,6 @@ Usage: <class name>.show(<id>)
 
     def do_destroy(self, arg):
         """
-****HELP****
 Deletes an instance based on the class name and id
 Usage: destroy <class name> <id>
 Usage: <class name>.destroy(<id>)
@@ -89,7 +85,6 @@ Usage: <class name>.destroy(<id>)
 
     def do_all(self, arg):
         """
-****HELP****
 Prints list of strings of all instances or specified instances
 Usage: all - Prints every saved object
 Usage: all <class name> - prints every saved object of "class name"
@@ -111,7 +106,6 @@ Usage: <class name>.all()
 
     def do_update(self, line):
         """
-****HELP****
 Updates an instance based on the class name and id.
 Usage: update <class name> <id>, <attribute name>, <attribute value>
 Usage: <class name>.update(<id>, <attribute name>, <attribute value>)
@@ -259,7 +253,6 @@ Usage: <class name>.count()\n\
             return False
         return True
 
-<<<<<<< HEAD
     def default(self, line):
         """Default command that handles class cmds: <class name>.func()"""
         args = line.split('.')
@@ -309,7 +302,7 @@ Usage: <class name>.count()\n\
 def parse_line(line):
     """Helper method to parse user typed input"""
     return tuple(line.split())
-=======
+
     @staticmethod
     def verify_attribute_arguments(args):
         """verify the attribute argument was passed correctly
@@ -321,7 +314,6 @@ def parse_line(line):
             print("** value missing **")
             return False
         return True
->>>>>>> 88a9328852d1f5c7d00b85573e90cf4eba0ea151
 
 
 if __name__ == '__main__':
