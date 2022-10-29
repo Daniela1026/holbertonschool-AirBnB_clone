@@ -11,13 +11,11 @@ from os import path
 class TestFileStorage(unittest.TestCase):
 
     def test_filepath(self):
-    """Test if module file_storage has documentation"""
+        """Test if module file_storage has documentation"""
         s = FileStorage()
         storage = s._FileStorage__file_path
         self.assertEqual(storage, "file.json")
 
-    def test_all_method(self):
-    """Test all method"""
     def test_all(self):
         """Test all method"""
         storage = FileStorage()
