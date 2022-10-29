@@ -7,12 +7,9 @@ Contains the FileStorage class
 import json
 from os import path
 
-<<<<<<< HEAD
-=======
 
 class FileStorage:
     """File Storage Class"""
->>>>>>> b088020ddb633384f63e0fe9c208d7eaa672ecce
 
 class FileStorage:
     """
