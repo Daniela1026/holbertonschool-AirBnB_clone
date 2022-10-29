@@ -9,6 +9,9 @@ from os import path
 
 
 class FileStorage:
+    """File Storage Class"""
+
+class FileStorage:
     """
     File Storage class
     """
@@ -46,43 +49,5 @@ class FileStorage:
             with open(self.__file_path, "r", encoding="utf-8") as file:
                 json_object = json.loads(file.read())
 
-<<<<<<< HEAD
-        attributes = {
-                "BaseModel":
-                {"id": str,
-                    "created_at": datetime.datetime,
-                    "updated_at": datetime.datetime},
-                "User":
-                {"email": str,
-                    "password": str,
-                    "first_name": str,
-                    "last_name": str},
-                "State":
-                {"name": str},
-                "City":
-                {"state_id": str,
-                    "name": str},
-                "Amenity":
-                {"name": str},
-                "Place":
-                {"city_id": str,
-                    "user_id": str,
-                    "name": str,
-                    "description": str,
-                    "number_rooms": int,
-                    "number_bathrooms": int,
-                    "max_guest": int,
-                    "price_by_night": int,
-                    "latitude": float,
-                    "longitude": float,
-                    "amenity_ids": list},
-                "Review":
-                {"place_id": str,
-                    "user_id": str,
-                    "text": str}
-}
-        return attributes
-=======
             for key, value in json_object.items():
                 self.__objects[key] = eval(value['__class__'])(**value)
->>>>>>> 7b2346e6d79f9e3bdccdcfb68a7950aea827d7cc
