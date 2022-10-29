@@ -42,9 +42,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, arg):
 
-    """Creates a new instance of a class and prints ID and saves to file.
+    """
+    Creates a new instance of a class and prints ID and saves to file.
     Usage: create <class name>
-    Usage: <class name>.create()"""
+    Usage: <class name>.create()
+    """
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -54,11 +56,11 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
-Prints the string representation of an instance
-based on the class name and id.
-Usage: show <class name> <id>
-Usage: <class name>.show(<id>)
-"""
+        Prints the string representation of an instance
+        based on the class name and id.
+        Usage: show <class name> <id>
+        Usage: <class name>.show(<id>)
+        """
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -70,10 +72,10 @@ Usage: <class name>.show(<id>)
 
     def do_destroy(self, arg):
         """
-Deletes an instance based on the class name and id
-Usage: destroy <class name> <id>
-Usage: <class name>.destroy(<id>)
-"""
+        Deletes an instance based on the class name and id
+        Usage: destroy <class name> <id>
+        Usage: <class name>.destroy(<id>)
+        """
         lineAsArgs = shlex.split(arg)
         if not self.verify_class_in_project(lineAsArgs):
             return
@@ -85,11 +87,11 @@ Usage: <class name>.destroy(<id>)
 
     def do_all(self, arg):
         """
-Prints list of strings of all instances or specified instances
-Usage: all - Prints every saved object
-Usage: all <class name> - prints every saved object of "class name"
-Usage: <class name>.all()
-"""
+        Prints list of strings of all instances or specified instances
+        Usage: all - Prints every saved object
+        Usage: all <class name> - prints every saved object of "class name"
+        Usage: <class name>.all()
+        """
         lineAsArgs = shlex.split(arg)
         objectsInStorage = models.storage.all()
         listOfObjectToPrint = []
@@ -106,13 +108,14 @@ Usage: <class name>.all()
 
     def do_update(self, line):
         """
-Updates an instance based on the class name and id.
-Usage: update <class name> <id>, <attribute name>, <attribute value>
-Usage: <class name>.update(<id>, <attribute name>, <attribute value>)
-****EXTRA****
-Can take a dictionary as input to update multiple attributes at once
-Usage: update <class name> <id>, <dictionary representation>
-usage: <class name>.update(<id>, <dictionary representation>)"""
+        Updates an instance based on the class name and id.
+        Usage: update <class name> <id>, <attribute name>, <attribute value>
+        Usage: <class name>.update(<id>, <attribute name>, <attribute value>)
+        ****EXTRA****
+        Can take a dictionary as input to update multiple attributes at once
+        Usage: update <class name> <id>, <dictionary representation>
+        usage: <class name>.update(<id>, <dictionary representation>)
+        """
         lineArgs = shlex.split(line)
         ArgLineDict = None
         if not self.verify_class_in_project(lineArgs):
@@ -173,7 +176,7 @@ usage: <class name>.update(<id>, <dictionary representation>)"""
         if len(lineAsArgs) == 0:
             print("*** unknown syntax: " + line)
             return
-        if lineAsArgs[0][1] not in listOfCmdMethods:
+    if lineAsArgs[0][1] not in listOfCmdMethods:
             print("*** command: " + lineAsArgs[0][1] + " is not reccognised")
             return
         className = lineAsArgs[0][0]
