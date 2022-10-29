@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
         """
         return False
 
-     def do_create(self, model_name: str):
+    def do_create(self, model_name: str):
         """ create [model]
         Creates a new instance of BaseModel"""
         if not model_name:
