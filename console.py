@@ -14,7 +14,6 @@ from models.review import Review
 from models.place import Place
 from models.state import State
 
-
 class HBNBCommand(cmd.Cmd):
     """
     An interpreter class inheriting from cmd
