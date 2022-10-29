@@ -106,13 +106,10 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-<<<<<<< HEAD
 
         args = line.split()
         if args[0] not in HBNBCommand.classes_list:
-=======
         if m_name not in self.model_tags:
->>>>>>> 7b2346e6d79f9e3bdccdcfb68a7950aea827d7cc
             print("** class doesn't exist **")
             return
         if len(line_arg) == 1:
