@@ -51,21 +51,7 @@ class HBNBCommand(cmd.Cmd):
         if args not in self.model_tags:
             print("** class doesn't exist **")
             return
-
-        if args == "BaseModel":
-            base = BaseModel()
-        if args == "User":
-            base = User()
-        if args == "State":
-            base = State()
-        if args == "City":
-            base = City()
-        if args == "Place":
-            base = Place()
-        if args == "Amenity":
-            base = Amenity()
-        if args == "Review":
-            base = Review()
+        base = eval(args)()
 
         base.save()
         print(base.id)
